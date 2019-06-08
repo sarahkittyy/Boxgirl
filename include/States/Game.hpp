@@ -14,8 +14,16 @@ namespace State
 class Game : public State
 {
 public:
+	/**
+	 * @brief Initializes the state.
+	 * 
+	 */
 	void init();
 
+	/**
+	 * @brief Ticks the world.
+	 * 
+	 */
 	void update();
 
 private:
