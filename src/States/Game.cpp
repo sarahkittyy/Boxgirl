@@ -5,13 +5,14 @@ namespace State
 
 void Game::init()
 {
+	// Register the render system
+	mWorld.registerSystem<Env::System::Render>(&window());
 }
 
 void Game::update()
 {
-	window().clear(sf::Color(127, 127, 255));
-
-	window().display();
+	//Tick the world
+	mWorld.tick();
 }
 
 }
