@@ -4,7 +4,7 @@ namespace Env::System
 {
 
 Physics::Physics()
-	: mWorld(b2Vec2(0, -9.8f))
+	: mWorld(b2Vec2(0, 9.8f))
 {
 	mPhysicsClock.restart();
 }

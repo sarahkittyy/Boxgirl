@@ -1,0 +1,31 @@
+{
+	"default": {
+		"collideable": false,
+		"solid": false,
+		"water": false,
+		"friction": 0.8,
+		"restitution": 0
+	},
+	"props": [
+		{
+			"collideable": false,
+			"solid": false,
+			"water": false
+		},
+		{
+			"collideable": true,
+			"solid": true,
+			"water": false
+		},
+		{
+			"collideable": true,
+			"solid": false,
+			"water": true
+		},
+		{
+			"collideable": true,
+			"solid": true,
+			"friction": -100
+		}
+	]
+}

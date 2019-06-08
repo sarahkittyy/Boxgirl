@@ -16,6 +16,13 @@ namespace Env::Component
 class Drawable : virtual public ECSX::Component,
 				 public sf::Drawable
 {
+public:
+	/**
+	 * @brief Virtual DTOR
+	 * 
+	 */
+	virtual ~Drawable();
+
 private:
 	/**
 	 * @brief SFML's draw() override.

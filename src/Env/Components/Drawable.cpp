@@ -3,5 +3,8 @@
 namespace Env::Component
 {
 
+Drawable::~Drawable()
+{
+}
 
 }
