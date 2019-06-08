@@ -29,6 +29,13 @@ public:
 private:
 	/// The world where all entities and systems are stored.
 	ECSX::World mWorld;
+
+	////////////////////////////
+	//
+	// ECSX System pointers.
+	//
+	////////////////////////////
+	Env::System::Physics* mPhysicsSystem;
 };
 
 }
