@@ -4,6 +4,7 @@
 
 #include "ECSX/Entity.hpp"
 #include "Env/Components/Components.hpp"
+#include "Env/Systems/GraphicalBodySync.hpp"
 #include "Env/Systems/Physics.hpp"
 
 namespace Env::Entities
