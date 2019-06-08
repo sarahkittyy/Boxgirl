@@ -19,11 +19,20 @@ class AnimatedSprite : public Env::Component::Drawable,
 					   public Env::Component::GenericUpdateable
 {
 public:
+	/// The sprite itself.
 	Graphics::AnimatedSprite sprite;
-
+	
+	/**
+	 * @brief Updates the animated sprite (GenericUpdateable)
+	 * 
+	 */
 	void update();
 
 private:
+	/**
+	 * @brief Draws the sprite.
+	 * 
+	 */
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 
