@@ -11,7 +11,13 @@ void Game::init()
 	mWorld.registerSystem<Env::System::GenericUpdate>();
 	mWorld.registerSystem<Env::System::GraphicalBodySync>();
 
-	Env::Entities::Player(mWorld.createEntity(), mPhysicsSystem, &resource());
+	Env::Entity::Player(mWorld.createEntity(),
+						mPhysicsSystem,
+						&resource());
+	Env::Entity::Tilemap(mWorld.createEntity(),
+						 &resource(),
+						 mPhysicsSystem,
+						 "test");
 }
 
 void Game::update()

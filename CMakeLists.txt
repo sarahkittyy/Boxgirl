@@ -16,6 +16,6 @@ target_link_libraries(boxjump sfml-graphics sfml-window sfml-audio sfml-network 
 target_include_directories(boxjump PUBLIC
 				"include"
 				"lib/nlohmann"
-				"lib/Box2D",
+				"lib/Box2D"
 				"lib/ECSX/include"
 )

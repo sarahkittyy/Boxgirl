@@ -14,14 +14,14 @@ namespace Env::Component
  * @brief Component container over a graphic AnimatedSprite instance.
  * 
  */
-class AnimatedSprite : public Env::Component::Drawable,
-					   public Env::Component::Transformable,
-					   public Env::Component::GenericUpdateable
+class AnimatedSprite : public Drawable,
+					   public Transformable,
+					   public GenericUpdateable
 {
 public:
 	/// The sprite itself.
 	Graphics::AnimatedSprite sprite;
-	
+
 	/**
 	 * @brief Updates the animated sprite (GenericUpdateable)
 	 * 

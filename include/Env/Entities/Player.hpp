@@ -7,7 +7,7 @@
 #include "Env/Systems/GraphicalBodySync.hpp"
 #include "Env/Systems/Physics.hpp"
 
-namespace Env::Entities
+namespace Env::Entity
 {
 
 /**

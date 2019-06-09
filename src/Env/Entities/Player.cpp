@@ -1,6 +1,6 @@
 #include "Env/Entities/Player.hpp"
 
-namespace Env::Entities
+namespace Env::Entity
 {
 
 void Player(ECSX::Entity* entity,
