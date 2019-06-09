@@ -13,7 +13,8 @@ void Game::init()
 
 	Env::Entity::Player(mWorld.createEntity(),
 						mPhysicsSystem,
-						&resource());
+						&resource(),
+						{300, 0});
 	Env::Entity::Tilemap(mWorld.createEntity(),
 						 &resource(),
 						 mPhysicsSystem,
