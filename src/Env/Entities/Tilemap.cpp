@@ -30,6 +30,30 @@ void Tilemap(ECSX::Entity* entity,
 	b2Body* body	  = entity->use<Component::Body>(
 							  physics->getWorld(), def)
 					   ->body;
+
+	// Iterate over tiles.
+	for (auto& tile : map->getTiles())
+	{
+		// Get the tile position & size.
+		b2Vec2 pos  = gbs::fromVector({tile.bounds.left, tile.bounds.top});
+		b2Vec2 size = gbs::fromVector({tile.bounds.width / 2.f, tile.bounds.height / 2.f});
+		// Get the tile properties.
+		nlohmann::json props = map->getTileProperties(tile.ID);
+		// Create the tile shape.
+		b2PolygonShape shape;
+		shape.SetAsBox(size.x, size.y, pos + size, 0);
+
+		// Create the fixture.
+		b2FixtureDef fixdef;
+		fixdef.friction	= props.at("friction").get<float>();
+		fixdef.isSensor	= !props.at("solid").get<bool>();
+		fixdef.density	 = 1.f;
+		fixdef.restitution = props.at("restitution").get<float>();
+		fixdef.shape	   = &shape;
+
+		// Set the fixture.
+		b2Fixture* fixture = body->CreateFixture(&fixdef);
+	}
 }
 
 }

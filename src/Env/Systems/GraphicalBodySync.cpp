@@ -23,7 +23,7 @@ void GraphicalBodySync::tick()
 //
 ////////////////////////////
 
-const float GraphicalBodySync::SCALE = 20.f;
+constexpr float GraphicalBodySync::SCALE;
 
 const float GraphicalBodySync::scale()
 {

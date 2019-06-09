@@ -100,7 +100,7 @@ public:
 
 private:
 	/// Transform from Box2D to graphical.
-	static const float SCALE;
+	static constexpr float SCALE = 20.f;
 };
 
 }

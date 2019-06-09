@@ -19,10 +19,11 @@ void Player(ECSX::Entity* entity,
 	spr.setAnimation("default");
 	spr.start();
 
-	//Center and move the sprite.
+	//Center and move the transformable container over the sprite.
 	using gbs = System::GraphicalBodySync;
 	gbs::orientCenter(&spr);
-	spr.setPosition(initial_pos);
+	spr.setPosition({0, 0});
+	entity->get<Component::AnimatedSprite>()->setPosition(initial_pos);
 
 	// Create the physics body.
 	b2BodyDef def;
@@ -35,6 +36,7 @@ void Player(ECSX::Entity* entity,
 							  def)
 					   ->body;
 
+	// Player fixtures
 	b2ChainShape playerShape;
 	b2Vec2 vertices[4];
 	sf::Vector2f playerSize = gbs::halfSize(spr);
