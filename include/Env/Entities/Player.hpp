@@ -16,9 +16,11 @@ namespace Env::Entities
  * @param entity The entity in the world to configure.
  * @param physics The world's physics system.
  * @param resource The app resource manager.
+ * @param initial_pos The initial player position.
  */
 void Player(ECSX::Entity* entity,
 			System::Physics* physics,
-			ResourceManager* resource);
+			ResourceManager* resource,
+			sf::Vector2f initial_pos = {0, 0});
 
 }
