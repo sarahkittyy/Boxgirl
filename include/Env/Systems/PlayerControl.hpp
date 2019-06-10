@@ -46,13 +46,21 @@ private:
 	void capXVelocity(b2Body* body, float xMax);
 
 	/**
-	 * @brief Toggle on & off water physics based on the currently collided-with tiles's properties.
+	 * @brief Cap the body's Y velocity.
+	 * 
+	 * @param body The body to cap.
+	 * @param yMax The maximum y velocity.
+	 */
+	void capYVelocity(b2Body* body, float yMax);
+
+	/**
+	 * @brief Toggle on & off medium physics based on the currently collided-with tiles's properties.
 	 * 
 	 * @param medium A mutable reference to a string,
-	 * will be changed to "air" or "water" depending on current medium.
+	 * will be changed to the type of medium currently in contact with.
 	 * @param playerFixture The player's fixture.
 	 */
-	void toggleWaterPhysics(std::string& medium, b2Fixture* playerFixture);
+	void toggleMediumPhysics(std::string& medium, b2Fixture* playerFixture);
 
 	/**
 	 * @brief Get the maximum ground friction based on all colliding ground fixtures.

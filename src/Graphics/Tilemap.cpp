@@ -57,8 +57,8 @@ void Tilemap::loadMap()
 	mVertices.clear();
 
 	//Texture grid size.
-	sf::Vector2i texGridSize(mTexture->getSize().x / mTileSize.x,
-							 mTexture->getSize().y / mTileSize.y);
+	sf::Vector2i texGridSize(mTexture->getSize().x / mTextureTileSize.x,
+							 mTexture->getSize().y / mTextureTileSize.y);
 
 	//Iterate over all tiles in mTiles.
 	int index = -1;

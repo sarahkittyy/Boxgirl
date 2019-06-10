@@ -28,9 +28,9 @@ void PlayerControl::tick()
 				}
 			}
 
-			// Toggles water physics based on whether or not we are in water.
-			toggleWaterPhysics(control->currentMedium,
-							   control->playerFixture);
+			// Toggles medium physics.
+			toggleMediumPhysics(control->currentMedium,
+								control->playerFixture);
 
 			// Get the current set of physics.
 			Component::ControllablePlayer::GeneralPhysics& physics =
@@ -47,12 +47,21 @@ void PlayerControl::tick()
 			applyLRForces(body, physics.accelForce);
 			// Cap X velocity.
 			capXVelocity(body, physics.xMax);
+			// Cap Y velocity.
+			capYVelocity(body, physics.yMax);
 
 			// Get the maximum ground friction
 			float maxFriction = getMaxGroundFriction(colliding);
 
 			//Decelerate the body based on the friction.
 			decelerateBody(body, physics.decel * maxFriction);
+
+			// Applies a downward force. For certain mediums
+			if (KeyHit(Key::S) && physics.canDescend)
+			{
+				// "Jump downward"
+				body->ApplyLinearImpulseToCenter(b2Vec2(0, -physics.jumpImpulse), true);
+			}
 
 			if (KeyHit(Key::W))
 			{
@@ -124,7 +133,17 @@ void PlayerControl::capXVelocity(b2Body* body, float xMax)
 	}
 }
 
-void PlayerControl::toggleWaterPhysics(std::string& medium, b2Fixture* playerFixture)
+void PlayerControl::capYVelocity(b2Body* body, float yMax)
+{
+	b2Vec2 vel = body->GetLinearVelocity();
+	if (std::abs(vel.y) > std::abs(yMax))
+	{
+		vel.y = yMax * (vel.y / std::abs(vel.y));
+		body->SetLinearVelocity(vel);
+	}
+}
+
+void PlayerControl::toggleMediumPhysics(std::string& medium, b2Fixture* playerFixture)
 {
 	medium = "air";   //Defaults to air medium
 	// Get all tiles colliding with the fixture.

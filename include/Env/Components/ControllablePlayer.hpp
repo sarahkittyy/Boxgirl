@@ -18,6 +18,9 @@ public:
 
 		/// Maximum x velocity.
 		float xMax;
+		/// Maximum y velocity.
+		float yMax;
+
 		/// Force applied on left/right press.
 		float accelForce;
 
@@ -29,6 +32,9 @@ public:
 
 		/// Whether or not we can jump anywhere.
 		bool canJumpAnywhere;
+
+		/// For mediums like water, where we can descend.
+		bool canDescend;
 	};
 
 	/// Defines physics in different mediums
