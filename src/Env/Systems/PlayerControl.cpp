@@ -36,6 +36,9 @@ void PlayerControl::tick()
 			Component::ControllablePlayer::GeneralPhysics& physics =
 				control->physics[control->currentMedium];
 
+			// Set the gravity scale.
+			body->SetGravityScale(physics.gravityScale);
+
 			//Keyboard state aliases
 			auto& KeyHit = sf::Keyboard::isKeyPressed;
 			using Key	= sf::Keyboard::Key;
@@ -123,6 +126,7 @@ void PlayerControl::capXVelocity(b2Body* body, float xMax)
 
 void PlayerControl::toggleWaterPhysics(std::string& medium, b2Fixture* playerFixture)
 {
+	medium = "air";   //Defaults to air medium
 	// Get all tiles colliding with the fixture.
 	for (auto& fixture : CollisionTracker::getCollisionData(playerFixture).Collisions)
 	{
@@ -145,8 +149,6 @@ void PlayerControl::toggleWaterPhysics(std::string& medium, b2Fixture* playerFix
 			return;
 		}
 	}
-
-	medium = "air";
 }
 
 float PlayerControl::getMaxGroundFriction(std::vector<b2Fixture*> collisions)

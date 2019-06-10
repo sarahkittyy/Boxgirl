@@ -33,12 +33,14 @@ void Player(ECSX::Entity* entity,
 	control->physics["air"].xMax			= 12.f;
 	control->physics["air"].jumpImpulse		= -28.f;
 	control->physics["air"].canJumpAnywhere = false;
+	control->physics["air"].gravityScale	= 1.f;
 
 	control->physics["water"].accelForce	  = 2.5f;
 	control->physics["water"].decel			  = 0.05f;
 	control->physics["water"].xMax			  = 4.f;
-	control->physics["water"].jumpImpulse	 = -0.09f;
+	control->physics["water"].jumpImpulse	 = -0.06f;
 	control->physics["water"].canJumpAnywhere = true;
+	control->physics["water"].gravityScale	= 0.6f;
 
 	control->currentMedium = "air";
 

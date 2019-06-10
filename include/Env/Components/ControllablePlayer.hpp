@@ -13,6 +13,7 @@ class ControllablePlayer : public ECSX::Component
 public:
 	struct GeneralPhysics
 	{
+		/// The gravity scaling.
 		float gravityScale;
 
 		/// Maximum x velocity.
