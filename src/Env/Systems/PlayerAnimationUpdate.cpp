@@ -71,8 +71,6 @@ void PlayerAnimationUpdate::tick()
 
 			// Set the animation.
 			sprite->setAnimation(action + direction);
-
-			sf::err() << action + direction << std::endl;
 		});
 }
 
