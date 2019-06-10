@@ -33,14 +33,14 @@ void Player(ECSX::Entity* entity,
 	control->physics["air"].xMax			= 12.f;
 	control->physics["air"].jumpImpulse		= -28.f;
 	control->physics["air"].canJumpAnywhere = false;
-	control->physics["air"].gravityScale	= 1.f;
+	control->physics["air"].gravityScale	= 8.f;
 
 	control->physics["water"].accelForce	  = 2.5f;
 	control->physics["water"].decel			  = 0.05f;
 	control->physics["water"].xMax			  = 4.f;
-	control->physics["water"].jumpImpulse	 = -0.06f;
+	control->physics["water"].jumpImpulse	 = -0.023f;
 	control->physics["water"].canJumpAnywhere = true;
-	control->physics["water"].gravityScale	= 0.6f;
+	control->physics["water"].gravityScale	= 0.5f;
 
 	control->currentMedium = "air";
 
@@ -48,7 +48,6 @@ void Player(ECSX::Entity* entity,
 	b2BodyDef def;
 	def.type		  = b2_dynamicBody;
 	def.fixedRotation = true;
-	def.gravityScale  = 1.f;
 	def.linearDamping = 1.f;
 	def.gravityScale  = 8.f;
 	def.position	  = gbs::fromVector(initial_pos);
