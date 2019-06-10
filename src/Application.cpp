@@ -1,11 +1,15 @@
 #include "Application.hpp"
 
 Application::Application()
-	: mWindow(sf::VideoMode(600, 600), "Boxjump"),
+	: mWindow(sf::VideoMode(600, 600), "Boxgirl"),
 	  mSM(&mWindow,
 		  &mResource,
 		  new State::Game())
 {
+	// Load the icon.
+	sf::Image icon;
+	icon.loadFromFile("resource/icon.png");
+	mWindow.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
 int Application::run()
