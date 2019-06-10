@@ -59,6 +59,8 @@ public:
 	void removeAnimation(std::string name);
 	/// Get a pointer to the animation with name `name`
 	Animation* getAnimation(std::string name);
+	/// Just get the current running animation.
+	std::string getAnimation();
 	/// Set the currently running animation.
 	void setAnimation(std::string name);
 
@@ -116,6 +118,7 @@ private:
 	sf::Clock mAnimationClock;   ///< The animation sprite timer.
 	size_t mFrame;				 ///< The current frame.
 	Animation* mAnim;			 ///< The current animation.
+	std::string mCurrentAnim; ///< The name of the current animation.
 
 	bool mRunning;
 

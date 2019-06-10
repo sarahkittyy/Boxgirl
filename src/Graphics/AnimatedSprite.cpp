@@ -85,14 +85,20 @@ AnimatedSprite::Animation* AnimatedSprite::getAnimation(std::string name)
 	}
 }
 
+std::string AnimatedSprite::getAnimation()
+{
+	return mCurrentAnim;
+}
+
 void AnimatedSprite::setAnimation(std::string name)
 {
 	if (getAnimation(name) == mAnim)
 	{
 		return;
 	}
-	mFrame = 0;
-	mAnim  = getAnimation(name);
+	mFrame		 = 0;
+	mAnim		 = getAnimation(name);
+	mCurrentAnim = name;
 	mSprite.setTextureRect(getFrameRect());
 }
 
