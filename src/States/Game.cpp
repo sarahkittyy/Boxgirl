@@ -10,6 +10,7 @@ void Game::init()
 	mPhysicsSystem = mWorld.registerSystem<Env::System::Physics>();
 	mWorld.registerSystem<Env::System::GenericUpdate>();
 	mWorld.registerSystem<Env::System::GraphicalBodySync>();
+	mWorld.registerSystem<Env::System::PlayerControl>();
 
 	Env::Entity::Player(mWorld.createEntity(),
 						mPhysicsSystem,

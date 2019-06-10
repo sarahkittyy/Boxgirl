@@ -28,6 +28,7 @@ public:
 	{
 		sf::FloatRect bounds;
 		int ID;
+		Tilemap* map;   // Pointer to *this.
 	};
 
 	/**

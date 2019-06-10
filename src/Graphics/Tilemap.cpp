@@ -148,7 +148,8 @@ std::vector<Tilemap::Tile> Tilemap::getTiles(nlohmann::json props)
 		tiles.push_back({.bounds = sf::FloatRect(
 							 x, y,
 							 mTileSize.x, mTileSize.y),
-						 .ID = tileID});
+						 .ID = tileID,
+						 .map = this});
 	}
 
 	return tiles;
@@ -175,7 +176,8 @@ std::vector<Tilemap::Tile> Tilemap::getTiles(int id)
 			tiles.push_back({.bounds = sf::FloatRect(
 								 x, y,
 								 mTileSize.x, mTileSize.y),
-							 .ID = tileID});
+							 .ID = tileID,
+							 .map = this});
 		}
 	}
 	//Return constructed tiles.

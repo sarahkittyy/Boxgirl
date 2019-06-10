@@ -3,7 +3,7 @@
 		"collideable": false,
 		"solid": false,
 		"water": false,
-		"friction": 0.8,
+		"friction": 0.1,
 		"restitution": 0
 	},
 	"props": [
@@ -25,7 +25,7 @@
 		{
 			"collideable": true,
 			"solid": true,
-			"friction": -100
+			"friction": 0.5
 		}
 	]
 }

@@ -11,6 +11,7 @@ void Tilemap(ECSX::Entity* entity,
 	// Create & retrieve the tilemap component.
 	Graphics::Tilemap* map = &(entity->use<Component::Tilemap>(resource)->tilemap);
 	// Load the map
+	Component::Tilemap* map_component = entity->get<Component::Tilemap>();
 	map->loadFromFile("resource/maps/" + map_name + ".json");
 
 	////////////////////////////
@@ -31,8 +32,9 @@ void Tilemap(ECSX::Entity* entity,
 							  physics->getWorld(), def)
 					   ->body;
 
-	// Iterate over tiles.
-	for (auto& tile : map->getTiles())
+	// Iterate over all tiles.
+	map_component->collideableTiles = map->getTiles({{"collideable", true}});
+	for (auto& tile : map_component->collideableTiles)
 	{
 		// Get the tile position & size.
 		b2Vec2 pos  = gbs::fromVector({tile.bounds.left, tile.bounds.top});
@@ -50,9 +52,12 @@ void Tilemap(ECSX::Entity* entity,
 		fixdef.density	 = 1.f;
 		fixdef.restitution = props.at("restitution").get<float>();
 		fixdef.shape	   = &shape;
+		// Store a pointer to the tile ID here.
+		fixdef.userData = (void*)(&tile);
+		TaggedData::tagData("Graphics::Tilemap::Tile", fixdef.userData);
 
 		// Set the fixture.
-		b2Fixture* fixture = body->CreateFixture(&fixdef);
+		body->CreateFixture(&fixdef);
 	}
 }
 

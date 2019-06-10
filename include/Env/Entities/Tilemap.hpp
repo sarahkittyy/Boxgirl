@@ -6,6 +6,7 @@
 #include "Env/Components/Components.hpp"
 #include "Env/Systems/GraphicalBodySync.hpp"
 #include "Env/Systems/Physics.hpp"
+#include "Env/TaggedData.hpp"
 #include "nlohmann/json.hpp"
 
 namespace Env::Entity

@@ -4,8 +4,8 @@
 #include "Graphics/Tilemap.hpp"
 
 #include "ECSX/Component.hpp"
-
 #include "Env/Components/Drawable.hpp"
+#include "nlohmann/json.hpp"
 
 namespace Env::Component
 {
@@ -29,6 +29,10 @@ public:
 	 * 
 	 */
 	Graphics::Tilemap tilemap;
+
+	/// This component's copy of the map's collideable tiles,
+	/// for storing in fixture data.
+	std::vector<Graphics::Tilemap::Tile> collideableTiles;
 
 private:
 	/**

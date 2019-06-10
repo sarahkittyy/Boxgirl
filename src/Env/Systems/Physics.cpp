@@ -7,6 +7,8 @@ Physics::Physics()
 	: mWorld(b2Vec2(0, 9.8f))
 {
 	mPhysicsClock.restart();
+	//Init the contact listener.
+	mWorld.SetContactListener(&mCollisionTracker);
 }
 
 void Physics::tick()
