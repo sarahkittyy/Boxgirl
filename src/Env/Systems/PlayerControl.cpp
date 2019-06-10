@@ -16,18 +16,6 @@ void PlayerControl::tick()
 			std::vector<b2Fixture*> colliding =
 				CollisionTracker::getCollisionData(control->groundFixture).Collisions;
 
-			std::vector<Graphics::Tilemap::Tile> tiles_colliding;
-
-			// Get only all tile types from that vector.
-			for (auto& fixture : colliding)
-			{
-				if (TaggedData::getType(fixture->GetUserData()) == "Graphics::Tilemap::Tile")
-				{
-					tiles_colliding.push_back(
-						*reinterpret_cast<Graphics::Tilemap::Tile*>(fixture->GetUserData()));
-				}
-			}
-
 			// Toggles medium physics.
 			toggleMediumPhysics(control->currentMedium,
 								control->playerFixture);
@@ -65,40 +53,10 @@ void PlayerControl::tick()
 
 			if (KeyHit(Key::W))
 			{
-				//True if there's nothing but non-solid tiles below us. (fake collision)
-				// There is a valid floor immediately if
-				// physics.canJumpAnywhere is true
-				bool noValidFloor = true && !physics.canJumpAnywhere;
-
-				// If there are any non-tile-collisions,
-				// there's valid floor.
-				if (tiles_colliding.size() < colliding.size())
+				// If we can jump...
+				if (control->canJump(colliding))
 				{
-					noValidFloor = false;
-				}
-
-				//Iterate over all tile collisions..
-				for (auto& tile : tiles_colliding)
-				{
-					// For any earlier conditions
-					if (!noValidFloor)
-					{
-						break;
-					}
-
-					//If the tile is solid, we're fine.
-
-					if (tile.map->getTileProperties(tile.ID).at("solid").get<bool>())
-					{
-						noValidFloor = false;
-						break;
-					}
-				}
-				// If there's valid floor
-				// (And we're not vertically moving..)
-				if (!noValidFloor && (std::abs(body->GetLinearVelocity().y) < 0.01f || physics.canJumpAnywhere))
-				{
-					//We can jump.
+					//Jump.
 					body->ApplyLinearImpulseToCenter(
 						b2Vec2(0, physics.jumpImpulse), true);
 				}

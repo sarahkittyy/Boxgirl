@@ -4,6 +4,9 @@
 #include <unordered_map>
 #include "Box2D/Box2D.h"
 #include "ECSX/ECSX.hpp"
+#include "Env/CollisionTracker.hpp"
+#include "Env/TaggedData.hpp"
+#include "Graphics/Tilemap.hpp"
 
 namespace Env::Component
 {
@@ -46,6 +49,14 @@ public:
 
 	/// Pointer to the ground sensor fixture, for jumping control.
 	b2Fixture* groundFixture;
+
+	/// True if the player is able to jump.
+	/// Pass a vector of fixtures colliding groundFixture
+	bool canJump(std::vector<b2Fixture*> colliding);
+	
+	/// True if the player is on solid ground.
+	/// Pass a vector of fixtures colliding groundFixture
+	bool onSolidGround(std::vector<b2Fixture*> colliding);
 };
 
 }

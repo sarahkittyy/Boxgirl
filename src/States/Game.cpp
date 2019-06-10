@@ -11,6 +11,7 @@ void Game::init()
 	mWorld.registerSystem<Env::System::GenericUpdate>();
 	mWorld.registerSystem<Env::System::GraphicalBodySync>();
 	mWorld.registerSystem<Env::System::PlayerControl>();
+	mWorld.registerSystem<Env::System::PlayerAnimationUpdate>();
 
 	Env::Entity::Player(mWorld.createEntity(),
 						mPhysicsSystem,

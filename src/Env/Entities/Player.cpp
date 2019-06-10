@@ -15,8 +15,14 @@ void Player(ECSX::Entity* entity,
 		.frameSize({18, 28})
 		.renderSize({18, 28})
 		.init();
-	spr.addAnimation("default", {.frames = {0, 1, 2, 3, 4, 5}, .speed = sf::seconds(0.2f)});
-	spr.setAnimation("default");
+	// Animation configuration.
+	spr.addAnimation("standleft", {.frames = {3}, .speed = sf::seconds(-1)});
+	spr.addAnimation("standright", {.frames = {1}, .speed = sf::seconds(-1)});
+	spr.addAnimation("walkleft", {.frames = {2, 3}, .speed = sf::seconds(0.2f)});
+	spr.addAnimation("walkright", {.frames = {0, 1}, .speed = sf::seconds(0.2f)});
+	spr.addAnimation("jumpleft", {.frames = {5}, .speed = sf::seconds(-1)});
+	spr.addAnimation("jumpright", {.frames = {4}, .speed = sf::seconds(-1)});
+	spr.setAnimation("standright");
 	spr.start();
 
 	//Center and move the transformable container over the sprite.
