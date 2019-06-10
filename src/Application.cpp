@@ -4,7 +4,7 @@ Application::Application()
 	: mWindow(sf::VideoMode(600, 600), "Boxgirl"),
 	  mSM(&mWindow,
 		  &mResource,
-		  new State::Game())
+		  new State::Level(1))
 {
 	// Load the icon.
 	sf::Image icon;

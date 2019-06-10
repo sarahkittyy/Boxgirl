@@ -1,9 +1,14 @@
-#include "States/Game.hpp"
+#include "States/Level.hpp"
 
 namespace State
 {
 
-void Game::init()
+Level::Level(int level)
+	: mCurrentLevel(level)
+{
+}
+
+void Level::init()
 {
 	// Register the render system
 	mWorld.registerSystem<Env::System::Render>(&window());
@@ -20,10 +25,10 @@ void Game::init()
 	Env::Entity::Tilemap(mWorld.createEntity(),
 						 &resource(),
 						 mPhysicsSystem,
-						 "test");
+						 "levels/" + std::to_string(mCurrentLevel));
 }
 
-void Game::update()
+void Level::update()
 {
 	//Tick the world
 	mWorld.tick();
