@@ -12,7 +12,7 @@ void Tilemap(ECSX::Entity* entity,
 	Graphics::Tilemap* map = &(entity->use<Component::Tilemap>(resource)->tilemap);
 	// Load the map
 	Component::Tilemap* map_component = entity->get<Component::Tilemap>();
-	map->loadFromFile("resource/maps/" + map_name + ".json");
+	map->loadFromFile("resource/maps/" + map_name + ".json", {600, 600});
 
 	////////////////////////////
 	//

@@ -42,8 +42,9 @@ public:
 	 * @brief Load/Init the tilemap from the json file at `path`.
 	 * 
 	 * @param path The path to the json file.
+	 * @param toSize The ideal size of the map, if left default will resort to the size set by the json data file.
 	 */
-	void loadFromFile(const std::string& path);
+	void loadFromFile(const std::string& path, sf::Vector2f toSize = {-1, -1});
 
 	/**
 	 * @brief Get all tiles on the map with properties matching `props`.
@@ -87,7 +88,9 @@ private:
 	std::vector<int> mTiles;   ///< The map tiles.
 
 	sf::Vector2i mMapSize;	///< The map size.
-	sf::Vector2i mTileSize;   ///< The tile size.
+	sf::Vector2i mTileSize;   ///< The rendered tile size.
+
+	sf::Vector2i mTextureTileSize;   ///< The size of a tile in the texture.
 
 	std::vector<nlohmann::json> mProps;   ///< Extra tile-specific properties.
 	nlohmann::json mDefaultProps;		  ///< Default tile properties.

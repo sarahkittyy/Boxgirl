@@ -9,7 +9,7 @@ Tilemap::Tilemap(ResourceManager* resource)
 	mVertices.setPrimitiveType(sf::Quads);
 }
 
-void Tilemap::loadFromFile(const std::string& path)
+void Tilemap::loadFromFile(const std::string& path, sf::Vector2f toSize)
 {
 	using nlohmann::json;
 
@@ -29,6 +29,18 @@ void Tilemap::loadFromFile(const std::string& path)
 	//Tile width & height
 	mTileSize.x = data.at("tilewidth");
 	mTileSize.y = data.at("tileheight");
+
+	mTextureTileSize = mTileSize;
+
+	if (toSize.x != -1 && toSize.y != -1)
+	{
+		//Scale the tile size up.
+		float mapScaleX = toSize.x / (mMapSize.x * mTileSize.x);
+		float mapScaleY = toSize.y / (mMapSize.y * mTileSize.y);
+		mTileSize.x *= mapScaleX;
+		mTileSize.y *= mapScaleY;
+	}
+
 	//Tile data.
 	mTiles = data.at("layers")[0].at("data").get<std::vector<int>>();
 	//Texture path.
@@ -63,8 +75,8 @@ void Tilemap::loadMap()
 		//Get the texture x and y position
 		int x = id % texGridSize.x;
 		int y = id / texGridSize.x;
-		x *= mTileSize.x;
-		y *= mTileSize.y;
+		x *= mTextureTileSize.x;
+		y *= mTextureTileSize.y;
 
 		//Get the map x and y position.
 		int mx = index % mMapSize.x;
@@ -78,13 +90,13 @@ void Tilemap::loadMap()
 			sf::Vector2f(x, y)));
 		mVertices.append(sf::Vertex(
 			sf::Vector2f(mx + mTileSize.x, my),
-			sf::Vector2f(x + mTileSize.x, y)));
+			sf::Vector2f(x + mTextureTileSize.x, y)));
 		mVertices.append(sf::Vertex(
 			sf::Vector2f(mx + mTileSize.x, my + mTileSize.y),
-			sf::Vector2f(x + mTileSize.x, y + mTileSize.y)));
+			sf::Vector2f(x + mTextureTileSize.x, y + mTextureTileSize.y)));
 		mVertices.append(sf::Vertex(
 			sf::Vector2f(mx, my + mTileSize.y),
-			sf::Vector2f(x, y + mTileSize.y)));
+			sf::Vector2f(x, y + mTextureTileSize.y)));
 	}
 }
 
@@ -148,7 +160,7 @@ std::vector<Tilemap::Tile> Tilemap::getTiles(nlohmann::json props)
 		tiles.push_back({.bounds = sf::FloatRect(
 							 x, y,
 							 mTileSize.x, mTileSize.y),
-						 .ID = tileID,
+						 .ID  = tileID,
 						 .map = this});
 	}
 
@@ -176,7 +188,7 @@ std::vector<Tilemap::Tile> Tilemap::getTiles(int id)
 			tiles.push_back({.bounds = sf::FloatRect(
 								 x, y,
 								 mTileSize.x, mTileSize.y),
-							 .ID = tileID,
+							 .ID  = tileID,
 							 .map = this});
 		}
 	}
