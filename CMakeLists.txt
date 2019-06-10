@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
-project(Boxjump)
+project(Boxgirl)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -10,10 +10,10 @@ find_package(SFML 2.5 REQUIRED COMPONENTS graphics window audio network system)
 
 file(GLOB_RECURSE sources "src/*.cpp")
 
-add_executable(boxjump ${sources})
-target_compile_options(boxjump PUBLIC -Wall)
-target_link_libraries(boxjump sfml-graphics sfml-window sfml-audio sfml-network sfml-system tobanteGaming::Box2D ecsx stdc++fs)
-target_include_directories(boxjump PUBLIC
+add_executable(boxgirl ${sources})
+target_compile_options(boxgirl PUBLIC -Wall)
+target_link_libraries(boxgirl sfml-graphics sfml-window sfml-audio sfml-network sfml-system tobanteGaming::Box2D ecsx stdc++fs)
+target_include_directories(boxgirl PUBLIC
 				"include"
 				"lib/nlohmann"
 				"lib/Box2D"
